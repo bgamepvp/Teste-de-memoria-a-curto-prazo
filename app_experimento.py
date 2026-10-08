@@ -279,7 +279,7 @@ else:
         
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
             st.session_state.etapa = "exposicao"
-            st.session_state.tempo_restante = 30 
+            st.session_state.tempo_restante = 600  # 10 minutos em segundos
             st.rerun()
 
     elif st.session_state.etapa == "exposicao":
@@ -357,7 +357,7 @@ else:
             st.session_state.palavras_incorretas = palavras_incorretas
             st.session_state.palavras_digitadas = palavras_digitadas
 
-            salvar_resultado_local(st.session_state.nome, st.session_state.grupo, acertos, palavras_digitadas)
+            salvar_resultado_local(st.session_state.nome,st.session_state.idade,st.session_state.area,st.session_state.grupo, acertos, palavras_digitadas)
             
             st.session_state.etapa = "resultado"
             st.rerun()
