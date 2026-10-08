@@ -37,7 +37,7 @@ if "nome" not in st.session_state:
 if "grupo" not in st.session_state:
     st.session_state.grupo = ""
 if "tempo_restante" not in st.session_state:
-    st.session_state.tempo_restante = 30
+    st.session_state.tempo_restante = 60
 if "respostas_manual_pesquisador" not in st.session_state:
     st.session_state.respostas_manual_pesquisador = []
 
@@ -254,11 +254,11 @@ else:
         if st.session_state.grupo == "Grupo experimental (Com Distração)":
             st.error("⚠️ LEIA COM MUITA ATENÇÃO ESTA REGRA:")
             st.markdown("""
-            Na próxima tela, você verá uma lista de **15 palavras** por exatamente **10 Minutos**.
+            Na próxima tela, você verá uma lista de **15 palavras** por exatamente **1 Minuto**.
             
             Sua tarefa é memorizar o máximo de palavras possível, mas **COM UMA CONDIÇÃO OBRIGATÓRIA**:
             
-            * Durante os 10 minutos em que as palavras estiverem na tela, você deve **REPETIR EM VOZ ALTA E DE FORMA SEGUIDA E CONSTANTE** os números:
+            * Durante os 1 minuto em que as palavras estiverem na tela, você deve **REPETIR EM VOZ ALTA E DE FORMA SEGUIDA E CONSTANTE** os números:
               
               **"um, dois, três, um, dois, três, um, dois, três..."**
             
@@ -268,11 +268,11 @@ else:
         else:
             st.success("✨ INSTRUÇÕES DO SEU TESTE:")
             st.markdown("""
-            Na próxima tela, você verá uma lista de **15 palavras** por exatamente **10 Minutos**.
+            Na próxima tela, você verá uma lista de **15 palavras** por exatamente **1 Minuto**.
             
             Sua tarefa é memorizar o máximo de palavras possível, sob a seguinte condição:
             
-            * Durante os 10 Minutos, você deve fazer a tarefa em **SILÊNCIO ABSOLUTO**.
+            * Durante os 1 Minuto, você deve fazer a tarefa em **SILÊNCIO ABSOLUTO**.
             * Concentre-se apenas nas palavras na tela, sem emitir nenhum som e sem escrever nada.
             """)
             
@@ -412,5 +412,5 @@ Data/Hora: {pd.Timestamp.now().strftime("%d/%m/%Y %H:%M:%S")}
             st.session_state.etapa = "inicio"
             st.session_state.nome = ""
             st.session_state.grupo = ""
-            st.session_state.tempo_restante = 30
+            st.session_state.tempo_restante = 60
             st.rerun()
