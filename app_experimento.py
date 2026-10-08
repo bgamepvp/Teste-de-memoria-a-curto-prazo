@@ -280,9 +280,14 @@ else:
         st.warning("Certifique-se de que está em um ambiente tranquilo e sem outras interrupções antes de clicar abaixo. O tempo começará a correr imediatamente!")
         
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
-            st.session_state.etapa = "exposicao"
-            st.session_state.tempo_restante = 600  # 10 minutos em segundos
-            st.rerun()
+            if st.session_state.etapa == "instrucoes":
+                st.session_state.etapa = "exposicao"
+                st.session_state.tempo_restante = 600  # 10 minutos em segundos
+                st.rerun()
+            elif st.session_state.etapa == "exposicao":
+                st.button("Finalizar Exposição e Ir para Recuperação 📝")
+                st.session_state.etapa = "recuperacao"
+                st.rerun()
 
     elif st.session_state.etapa == "exposicao":
         st.subheader("⏱️ Memorize as palavras abaixo!")
@@ -307,10 +312,6 @@ else:
             st.session_state.tempo_restante = t
             placeholder_timer.markdown(f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {t} segundos</h2>", unsafe_allow_html=True)
             time.sleep(1)
-
-        if set.button("Finalizar Exposição e Prosseguir para Recuperação 📝"):
-            st.session_state.etapa = "recuperacao"
-            st.rerun()
        
         st.session_state.etapa = "recuperacao"
         st.rerun()
