@@ -38,6 +38,8 @@ if "grupo" not in st.session_state:
     st.session_state.grupo = ""
 if "tempo_restante" not in st.session_state:
     st.session_state.tempo_restante = 600
+if "deadline_exposicao" not in st.session_state:
+    st.session_state.deadline_exposicao = 0
 if "respostas_manual_pesquisador" not in st.session_state:
     st.session_state.respostas_manual_pesquisador = []
 
@@ -282,9 +284,9 @@ else:
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
             if st.session_state.etapa == "instrucoes":
                 st.session_state.etapa = "exposicao"
-                st.session_state.tempo_restante = 600  # 10 minutos em segundos
+                st.session_state.deadline_exposicao = time.monotonic() + 600
+                st.rerun()
             elif st.session_state.etapa == "exposicao":
-                st.button("Finalizar Exposição e Ir para Recuperação 📝")
                 st.session_state.etapa = "recuperacao"
                 st.rerun()
 
@@ -304,15 +306,21 @@ else:
                 st.markdown(f"**{palavra}**")
                 
         st.divider()
-        
-        placeholder_timer = st.empty()
-        
-        for t in range(st.session_state.tempo_restante, -1, -1):
-            st.session_state.tempo_restante = t
-            placeholder_timer.markdown(f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {t} segundos</h2>", unsafe_allow_html=True)
-            time.sleep(1)
-       
-        st.session_state.etapa = "recuperacao"
+
+        if st.button("Pular para a fase de recuperação", type="primary"):
+            st.session_state.etapa = "recuperacao"
+            st.rerun()
+
+        tempo_restante = max(0, int(st.session_state.deadline_exposicao - time.monotonic()))
+        st.markdown(
+            f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {tempo_restante} segundos</h2>",
+            unsafe_allow_html=True,
+        )
+
+        if tempo_restante == 0:
+            st.session_state.etapa = "recuperacao"
+            st.rerun()
+
         st.rerun()
 
     elif st.session_state.etapa == "recuperacao":
