@@ -308,9 +308,10 @@ else:
             placeholder_timer.markdown(f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {t} segundos</h2>", unsafe_allow_html=True)
             time.sleep(1)
 
-        if st.button("Continuar para a Fase de Recuperação ✏️"):
-            st.session_state.tempo_restante = 0
-        
+        if set.button("Finalizar Exposição e Prosseguir para Recuperação 📝"):
+            st.session_state.etapa = "recuperacao"
+            st.rerun()
+       
         st.session_state.etapa = "recuperacao"
         st.rerun()
 
