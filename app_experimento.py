@@ -310,9 +310,9 @@ else:
             if t == 0:
                 break
             
-       if st.button("Continuar para a Fase de Recuperação ✏️"):
-            st.session_state.etapa = "recuperacao"
-            st.rerun()
+
+        st.session_state.etapa = "recuperacao"
+        st.rerun()
 
     elif st.session_state.etapa == "recuperacao":
         st.subheader("✏️ Fase de Recuperação: O que você lembra?")
