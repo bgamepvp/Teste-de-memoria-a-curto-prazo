@@ -217,7 +217,7 @@ else:
         
         nome_input = st.text_input("Digite seu Nome, Apelido ou Iniciais:", max_chars=40)
         idade_input = st.text_input("Digite sua Idade:", max_chars=3)
-        area_input = st.text_input("Digite sua Área de Estudo ou Curso:", max_chars=100)
+        area_input = st.text_input("Digite sua Área de Estudo ou Curso:", max_chars=100, placeholder="Este campo é opcional", opcional=True)
         
         st.subheader("Escolha o método de participação:")
         metodo = st.radio(
@@ -233,6 +233,8 @@ else:
         if st.button("Iniciar Experimento 🚀"):
             if not nome_input.strip():
                 st.warning("Por favor, insira seu nome ou apelido para prosseguir.")
+            elif not idade_input.strip().isdigit() or int(idade_input.strip()) < 18:
+                st.warning("Por favor, insira uma idade válida (18 anos ou mais) para prosseguir.")
             else:
                 st.session_state.nome = nome_input.strip()
                 st.session_state.idade = idade_input.strip()
@@ -295,7 +297,7 @@ else:
         cols = st.columns(3)
         for i, palavra in enumerate(PALAVRAS_ALVO):
             with cols[i % 3]:
-                st.markdown(f"**{i + 1}. {palavra}**")
+                st.markdown(f"**{palavra}**")
                 
         st.divider()
         
@@ -305,10 +307,11 @@ else:
             st.session_state.tempo_restante = t
             placeholder_timer.markdown(f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {t} segundos</h2>", unsafe_allow_html=True)
             time.sleep(1)
-            
-        st.session_state.etapa = "recuperacao"
+
         if st.button("Continuar para a Fase de Recuperação ✏️"):
-            st.session_state.etapa = "recuperacao"
+            st.session_state.tempo_restante = 0
+        
+        st.session_state.etapa = "recuperacao"
         st.rerun()
 
     elif st.session_state.etapa == "recuperacao":
