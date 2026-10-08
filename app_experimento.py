@@ -280,10 +280,9 @@ else:
         st.warning("Certifique-se de que está em um ambiente tranquilo e sem outras interrupções antes de clicar abaixo. O tempo começará a correr imediatamente!")
         
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
-            if st.session_state.etapa == "instrucoes":
-                st.session_state.etapa = "exposicao"
-                st.session_state.tempo_restante = 60
-                st.rerun()
+            st.session_state.etapa = "exposicao"
+            st.session_state.tempo_restante = 60
+            st.rerun()
 
     elif st.session_state.etapa == "exposicao":
         st.subheader("⏱️ Memorize as palavras abaixo!")
