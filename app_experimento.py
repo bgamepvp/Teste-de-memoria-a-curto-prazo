@@ -283,7 +283,6 @@ else:
             if st.session_state.etapa == "instrucoes":
                 st.session_state.etapa = "exposicao"
                 st.session_state.tempo_restante = 600  # 10 minutos em segundos
-                st.rerun()
             elif st.session_state.etapa == "exposicao":
                 st.button("Finalizar Exposição e Ir para Recuperação 📝")
                 st.session_state.etapa = "recuperacao"
