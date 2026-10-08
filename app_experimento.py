@@ -217,7 +217,7 @@ else:
         
         nome_input = st.text_input("Digite seu Nome, Apelido ou Iniciais:", max_chars=40)
         idade_input = st.text_input("Digite sua Idade:", max_chars=3)
-        area_input = st.text_input("Digite sua Área de Estudo ou Curso:", max_chars=100, placeholder="Este campo é opcional", opcional=True)
+        area_input = st.text_input("Digite sua Área de Estudo ou Curso:", max_chars=100, placeholder="Este campo é opcional", help="Este campo é opcional e não será utilizado para análise estatística.")
         
         st.subheader("Escolha o método de participação:")
         metodo = st.radio(
@@ -238,7 +238,7 @@ else:
             else:
                 st.session_state.nome = nome_input.strip()
                 st.session_state.idade = idade_input.strip()
-                st.session_state.area = area_input.strip()
+                st.session_state.area = area_input.strip() 
                 if metodo == "Atribuição Automática (Recomendado para balancear os grupos)":
                     st.session_state.grupo = random.choice(["Grupo experimental (Com Distração)", "Grupo controle (Sem Distração)"])
                 else:
