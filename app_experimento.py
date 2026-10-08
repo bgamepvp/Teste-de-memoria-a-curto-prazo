@@ -281,7 +281,7 @@ else:
         
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
             st.session_state.etapa = "exposicao"
-            st.session_state.tempo_restante = 30
+            st.session_state.tempo_restante = st.session_state.tempo_restante
             st.rerun()
 
     elif st.session_state.etapa == "exposicao":
