@@ -37,7 +37,7 @@ if "nome" not in st.session_state:
 if "grupo" not in st.session_state:
     st.session_state.grupo = ""
 if "tempo_restante" not in st.session_state:
-    st.session_state.tempo_restante = 60
+    st.session_state.tempo_restante = 30
 if "respostas_manual_pesquisador" not in st.session_state:
     st.session_state.respostas_manual_pesquisador = []
 
@@ -281,7 +281,7 @@ else:
         
         if st.button("Estou Pronto, Mostrar Palavras! ⏱️"):
             st.session_state.etapa = "exposicao"
-            st.session_state.tempo_restante = 60
+            st.session_state.tempo_restante = 30
             st.rerun()
 
     elif st.session_state.etapa == "exposicao":
