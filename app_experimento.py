@@ -307,9 +307,12 @@ else:
             st.session_state.tempo_restante = t
             placeholder_timer.markdown(f"<h2 style='text-align: center; color: #ff4b4b;'>Tempo Restante: {t} segundos</h2>", unsafe_allow_html=True)
             time.sleep(1)
-       
-        st.session_state.etapa = "recuperacao"
-        st.rerun()
+            if t == 0:
+                break
+            
+       if st.button("Continuar para a Fase de Recuperação ✏️"):
+            st.session_state.etapa = "recuperacao"
+            st.rerun()
 
     elif st.session_state.etapa == "recuperacao":
         st.subheader("✏️ Fase de Recuperação: O que você lembra?")
